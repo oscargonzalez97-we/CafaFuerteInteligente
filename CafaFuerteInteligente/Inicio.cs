@@ -27,7 +27,7 @@ namespace CafaFuerteInteligente
             CargarUsuarios();
             CargarTarjetas();
      
-            arduino = new SerialPort("COM3", 9600); // Ajusta tu puerto
+            arduino = new SerialPort("COM3", 9600); 
             arduino.DataReceived += Arduino_DataReceived;
            
             gbUN.Visible=false;
@@ -51,7 +51,7 @@ namespace CafaFuerteInteligente
 
                     if (existe > 0)
                     {
-                        arduino.WriteLine("OK"); // Enviar comando a Arduino (LED verde)
+                        arduino.WriteLine("OK"); 
                         this.Invoke(new Action(() =>
                         {
                             lblEstado.Text = $"✅ Tarjeta {uid} registrada";
@@ -60,7 +60,7 @@ namespace CafaFuerteInteligente
                     }
                     else
                     {
-                        arduino.WriteLine("NO"); // Enviar comando a Arduino (LED rojo)
+                        arduino.WriteLine("NO");
                         this.Invoke(new Action(() =>
                         {
                             lblEstado.Text = $"❌ Tarjeta {uid} NO registrada";
@@ -105,7 +105,7 @@ namespace CafaFuerteInteligente
             {
                 string data = arduino.ReadLine().Trim();
 
-                // 🟢 MODO REGISTRO: cuando estás escaneando para guardar tarjeta
+                
                 if (data.StartsWith("UID:"))
                 {
                     uidTarjeta = data.Substring(4);
@@ -115,11 +115,11 @@ namespace CafaFuerteInteligente
                     }));
                 }
 
-                // 🔵 MODO VERIFICACIÓN: cuando Arduino detecta una tarjeta en vigilancia
+                
                 else if (data.StartsWith("LEER:"))
                 {
                     string uidDetectado = data.Substring(5);
-                    VerificarTarjeta(uidDetectado); // 👈 Aquí se llama tu función
+                    VerificarTarjeta(uidDetectado);
                 }
             }
             catch (Exception ex)
@@ -238,7 +238,7 @@ namespace CafaFuerteInteligente
                     comando.ExecuteNonQuery();
 
                     MessageBox.Show("✅ Usuario registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarUsuarios(); // refresca la tabla
+                    CargarUsuarios(); 
                     txtUserN.Clear();
                     txtContraN.Clear();
                 }
@@ -344,7 +344,7 @@ namespace CafaFuerteInteligente
 
                 lbluid.Text = "Esperando tarjeta...";
                 uidTarjeta = "";
-                arduino.WriteLine("SCAN"); // Enviamos comando a Arduino
+                arduino.WriteLine("SCAN"); 
             }
             catch (Exception ex)
             {

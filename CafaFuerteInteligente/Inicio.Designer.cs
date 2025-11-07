@@ -64,6 +64,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
+            this.iconButton8 = new FontAwesome.Sharp.IconButton();
+            this.iconButton7 = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -191,10 +193,10 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel3.Controls.Add(this.panelInicio);
             this.panel3.Controls.Add(this.PanelTarjetas);
             this.panel3.Controls.Add(this.panelNuevos);
             this.panel3.Controls.Add(this.panelUsuarios);
+            this.panel3.Controls.Add(this.panelInicio);
             this.panel3.Location = new System.Drawing.Point(179, 83);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1043, 380);
@@ -203,9 +205,9 @@
             // panelNuevos
             // 
             this.panelNuevos.Controls.Add(this.gbUT);
-            this.panelNuevos.Controls.Add(this.gbUN);
             this.panelNuevos.Controls.Add(this.btnmostrarNT);
             this.panelNuevos.Controls.Add(this.btnmostarNU);
+            this.panelNuevos.Controls.Add(this.gbUN);
             this.panelNuevos.Location = new System.Drawing.Point(15, 17);
             this.panelNuevos.Name = "panelNuevos";
             this.panelNuevos.Size = new System.Drawing.Size(952, 349);
@@ -213,6 +215,7 @@
             // 
             // PanelTarjetas
             // 
+            this.PanelTarjetas.Controls.Add(this.iconButton7);
             this.PanelTarjetas.Controls.Add(this.dgvTarjetas);
             this.PanelTarjetas.Location = new System.Drawing.Point(15, 17);
             this.PanelTarjetas.Name = "PanelTarjetas";
@@ -422,6 +425,7 @@
             // 
             // panelUsuarios
             // 
+            this.panelUsuarios.Controls.Add(this.iconButton8);
             this.panelUsuarios.Controls.Add(this.dgvUsuarios);
             this.panelUsuarios.Location = new System.Drawing.Point(15, 17);
             this.panelUsuarios.Name = "panelUsuarios";
@@ -468,7 +472,7 @@
             this.panelInicio.Controls.Add(this.label6);
             this.panelInicio.Location = new System.Drawing.Point(0, 0);
             this.panelInicio.Name = "panelInicio";
-            this.panelInicio.Size = new System.Drawing.Size(631, 366);
+            this.panelInicio.Size = new System.Drawing.Size(566, 366);
             this.panelInicio.TabIndex = 8;
             // 
             // label6
@@ -512,6 +516,38 @@
             this.lblEstado.Size = new System.Drawing.Size(15, 20);
             this.lblEstado.TabIndex = 3;
             this.lblEstado.Text = "-";
+            // 
+            // iconButton8
+            // 
+            this.iconButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.iconButton8.IconColor = System.Drawing.Color.Black;
+            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton8.IconSize = 25;
+            this.iconButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton8.Location = new System.Drawing.Point(331, 251);
+            this.iconButton8.Name = "iconButton8";
+            this.iconButton8.Size = new System.Drawing.Size(123, 35);
+            this.iconButton8.TabIndex = 5;
+            this.iconButton8.Text = "Eliminar";
+            this.iconButton8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton8.UseVisualStyleBackColor = true;
+            // 
+            // iconButton7
+            // 
+            this.iconButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.iconButton7.IconColor = System.Drawing.Color.Black;
+            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton7.IconSize = 25;
+            this.iconButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton7.Location = new System.Drawing.Point(337, 278);
+            this.iconButton7.Name = "iconButton7";
+            this.iconButton7.Size = new System.Drawing.Size(123, 35);
+            this.iconButton7.TabIndex = 6;
+            this.iconButton7.Text = "Eliminar";
+            this.iconButton7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton7.UseVisualStyleBackColor = true;
             // 
             // Inicio
             // 
@@ -580,5 +616,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private FontAwesome.Sharp.IconButton iconButton8;
+        private FontAwesome.Sharp.IconButton iconButton7;
     }
 }
