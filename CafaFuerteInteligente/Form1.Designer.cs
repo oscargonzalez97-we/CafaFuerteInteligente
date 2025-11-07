@@ -148,7 +148,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Inicio de sesion";
+            this.label1.Text = "Inicio de sesion"; 
             // 
             // iconButton1
             // 
