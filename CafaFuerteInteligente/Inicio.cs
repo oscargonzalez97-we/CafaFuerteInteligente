@@ -19,25 +19,46 @@ namespace CafaFuerteInteligente
         SerialPort arduino;
         string conexionBD = "Server=localhost;Database=AdministradorSeguridad;Uid=root;Pwd=1234;";
         string uidTarjeta = "";
-
         public Inicio()
         {
             InitializeComponent();
             Estilos();
             CargarUsuarios();
             CargarTarjetas();
-     
-            arduino = new SerialPort("COM3", 9600); 
-            arduino.DataReceived += Arduino_DataReceived;
-           
+            CargarRegistros();
+            dgvRegistros.CellFormatting += dgvRegistros_CellFormatting;
+
+            try
+            {
+                // ✅ Crear instancia del puerto
+                arduino = new SerialPort();
+
+                // Configurar puerto serie
+                arduino.PortName = "COM4"; // Asegúrate que sea el correcto
+                arduino.BaudRate = 9600;
+                arduino.DataReceived += Arduino_DataReceived;
+
+                if (!arduino.IsOpen)
+                    arduino.Open();
+
+                lblEstado.Text = "Conectado al Arduino. Escaneando tarjetas...";
+                lblEstado.ForeColor = Color.Blue;
+            }
+            catch (Exception ex)
+            {
+                lblEstado.Text = "Error al conectar con Arduino: " + ex.Message;
+                lblEstado.ForeColor = Color.Red;
+            }
             gbUN.Visible=false;
             gbUT.Visible=false;
             panelNuevos.Visible=false;
             PanelTarjetas.Visible = false;
             panelUsuarios.Visible = false;
+            PanelRegistros.Visible = false;
+
 
         }
-        private void VerificarTarjeta(string uid)
+        private void VerificarTarjeta(string uid) 
         {
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
@@ -103,34 +124,101 @@ namespace CafaFuerteInteligente
         {
             try
             {
-                string data = arduino.ReadLine().Trim();
+                string data = arduino.ReadExisting().Trim();
 
-                
-                if (data.StartsWith("UID:"))
+                // 🔹 Dividir por saltos de línea si llegan varios mensajes juntos
+                string[] lineas = data.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string linea in lineas)
                 {
-                    uidTarjeta = data.Substring(4);
-                    this.Invoke(new Action(() =>
+                    string mensaje = linea.Trim();
+
+                    // Ignorar READY u otras palabras de inicialización
+                    if (string.IsNullOrEmpty(mensaje) || mensaje.ToUpper() == "READY")
+                        continue;
+
+                    // Filtrar UID válido (solo HEX y longitud esperada)
+                    if (System.Text.RegularExpressions.Regex.IsMatch(mensaje, "^[0-9A-Fa-f]{8,}$"))
                     {
-                        lbluid.Text = "✅ Escaneo con éxito: " + uidTarjeta;
-                    }));
-                }
+                        string uidDetectado = mensaje.ToUpper();
 
-                
-                else if (data.StartsWith("LEER:"))
-                {
-                    string uidDetectado = data.Substring(5);
-                    VerificarTarjeta(uidDetectado);
+                        this.Invoke(new Action(() =>
+                        {
+                            lblEstado.Text = $"Tarjeta detectada: {uidDetectado}";
+                            lblEstado.ForeColor = Color.DarkOrange;
+                        }));
+
+                        bool registrada = false;
+
+                        using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                        {
+                            conexion.Open();
+                            string query = "SELECT COUNT(*) FROM tarjetas WHERE UPPER(uid) = @uid";
+                            MySqlCommand comando = new MySqlCommand(query, conexion);
+                            comando.Parameters.AddWithValue("@uid", uidDetectado);
+                            int count = Convert.ToInt32(comando.ExecuteScalar());
+                            registrada = count > 0;
+                        }
+
+                        if (registrada)
+                        {
+                            arduino.WriteLine("green");
+                            this.Invoke(new Action(() =>
+                            {
+                                lblEstado.Text = $"✅ Tarjeta {uidDetectado} registrada";
+                                lblEstado.ForeColor = Color.Green;
+                            }));
+                        }
+                        else
+                        {
+                            arduino.WriteLine("red");
+                            this.Invoke(new Action(() =>
+                            {
+                                lblEstado.Text = $"❌ Tarjeta {uidDetectado} NO registrada";
+                                lblEstado.ForeColor = Color.Red;
+                            }));
+                        }
+
+                        RegistrarAcceso(uidDetectado, registrada);
+                    }
+                    else
+                    {
+                        // Mensaje no válido (ruido serial)
+                        this.Invoke(new Action(() =>
+                        {
+                            lblEstado.Text = $"Ignorado: {mensaje}";
+                            lblEstado.ForeColor = Color.Gray;
+                        }));
+                    }
                 }
             }
             catch (Exception ex)
             {
                 this.Invoke(new Action(() =>
                 {
-                    lblEstado.Text = "Error de lectura: " + ex.Message;
+                    lblEstado.Text = "Error en comunicación: " + ex.Message;
                     lblEstado.ForeColor = Color.Red;
                 }));
             }
         }
+
+        private void RegistrarAcceso(string uid, bool permitido)
+        {
+            using(MySqlConnection conexion = new MySqlConnection(conexionBD))
+    {
+                conexion.Open();
+
+                string query = @"
+            INSERT INTO registros (fecha, hora, uid_tarjeta, estado)
+            VALUES (CURDATE(), CURTIME(), @uid_tarjeta, @estado)";
+
+                MySqlCommand comando = new MySqlCommand(query, conexion);
+                comando.Parameters.AddWithValue("@uid_tarjeta", uid);
+                comando.Parameters.AddWithValue("@estado", permitido ? "PERMITIDO" : "DENEGADO");
+                comando.ExecuteNonQuery();
+            }
+        }
+
 
 
         private void Estilos()
@@ -250,42 +338,13 @@ namespace CafaFuerteInteligente
         }
         //Termina nuevo usuario
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            panelUsuarios.Visible = true;
-            panelNuevos.Visible = false;
-            PanelTarjetas.Visible = false;
-            panelInicio.Visible = false;
+      
 
-        }
+       
 
-        private void iconButton2_Click(object sender, EventArgs e)
-        {
-            PanelTarjetas.Visible = true;
-            panelUsuarios.Visible = false;
-            panelNuevos.Visible = false;
-            panelInicio.Visible = false;
+      
 
-
-        }
-
-        private void iconButton3_Click(object sender, EventArgs e)
-        {
-            panelUsuarios.Visible = false;
-            panelNuevos.Visible = false;
-            PanelTarjetas.Visible = false;
-            panelInicio.Visible = false;
-
-        }
-
-        private void iconButton4_Click(object sender, EventArgs e)
-        {
-            panelNuevos.Visible=true;
-            panelUsuarios.Visible = false;
-            PanelTarjetas.Visible = false;
-            panelInicio.Visible = false;
-
-        }
+        
         //Panel Nuevos
         private void btnver_Click(object sender, EventArgs e)
         {
@@ -365,12 +424,271 @@ namespace CafaFuerteInteligente
             
         }
 
-        private void iconButton6_Click(object sender, EventArgs e)
+       //Botones del menu
+        private void btnInicio_Click_1(object sender, EventArgs e)
         {
             panelInicio.Visible = true;
             panelNuevos.Visible = false;
             PanelTarjetas.Visible = false;
             panelUsuarios.Visible = false;
+            PanelRegistros.Visible = false;
+            label8.Visible = true;
+            label6.Visible = true;
+            lblEstado.Visible = true;
         }
+
+        private void btnUsuarios_Click_1(object sender, EventArgs e)
+        {
+            panelUsuarios.Visible = true;
+            panelNuevos.Visible = false;
+            PanelTarjetas.Visible = false;
+            panelInicio.Visible = false;
+            PanelRegistros.Visible = false;
+        }
+
+        private void btnTarjetas_Click(object sender, EventArgs e)
+        {
+
+            PanelTarjetas.Visible = true;
+            panelUsuarios.Visible = false;
+            panelNuevos.Visible = false;
+            panelInicio.Visible = true;
+            PanelRegistros.Visible = false;
+            label8.Visible = false;
+            label6.Visible = false;
+            lblEstado.Visible = false;
+        }
+
+        private void btnRegistros_Click(object sender, EventArgs e)
+        {
+            PanelRegistros.Visible = true;
+            panelUsuarios.Visible = false;
+            panelNuevos.Visible = false;
+            PanelTarjetas.Visible = false;
+            panelInicio.Visible = false;
+        }
+        private void CargarRegistros()
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    string query = "SELECT fecha AS 'Fecha', hora AS 'Hora', estado AS 'Estado' FROM registros ORDER BY id_registro DESC";
+                    MySqlDataAdapter adaptador = new MySqlDataAdapter(query, conexion);
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    dgvRegistros.DataSource = tabla;
+
+                    dgvRegistros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvRegistros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvRegistros.ReadOnly = true;
+                    dgvRegistros.AllowUserToAddRows = false;
+                    dgvRegistros.RowHeadersVisible = false;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void dgvRegistros_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvRegistros.Columns[e.ColumnIndex].Name == "Estado" && e.Value != null)
+            {
+                string estado = e.Value.ToString();
+
+                if (estado.Equals("PERMITIDO", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.ForeColor = Color.White;
+                    e.CellStyle.BackColor = Color.Green;
+                }
+                else if (estado.Equals("DENEGADO", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.ForeColor = Color.White;
+                    e.CellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+
+        private void btnNuevos_Click(object sender, EventArgs e)
+        {
+
+            panelNuevos.Visible = true;
+            panelUsuarios.Visible = false;
+            PanelTarjetas.Visible = false;
+            panelInicio.Visible = false;
+        }
+
+
+        //Termina botones el menu 
+        //Botones para usuario
+
+        int idUsuarioSeleccionado = -1;
+        private void btnBuscarU_Click(object sender, EventArgs e)
+        {
+            string nombreBuscar = txtUser.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombreBuscar))
+            {
+                MessageBox.Show("Por favor, ingresa un nombre para buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool encontrado = false;
+            idUsuarioSeleccionado = -1;
+
+            foreach (DataGridViewRow fila in dgvUsuarios.Rows)
+            {
+                if (fila.Cells["nombre"].Value != null &&
+                    fila.Cells["nombre"].Value.ToString().Equals(nombreBuscar, StringComparison.OrdinalIgnoreCase))
+                {
+                    fila.Selected = true;
+                    fila.DefaultCellStyle.BackColor = Color.LightYellow;
+                    dgvUsuarios.FirstDisplayedScrollingRowIndex = fila.Index;
+
+                    idUsuarioSeleccionado = Convert.ToInt32(fila.Cells["id"].Value);
+                    encontrado = true;
+                }
+                else
+                {
+                    fila.DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+
+            if (encontrado)
+            {
+                MessageBox.Show($"Usuario '{nombreBuscar}' encontrado.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Usuario no encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        int idTarjetaSeleccionada = -1;
+        private void btnEliminarU_Click(object sender, EventArgs e)
+        {
+            if (idUsuarioSeleccionado == -1)
+            {
+                MessageBox.Show("Por favor busca un usuario antes.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirmacion = MessageBox.Show(
+                "¿Seguro que deseas eliminar este usuario?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                {
+                    try
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM usuarios WHERE id = @id";
+                        MySqlCommand comando = new MySqlCommand(query, conexion);
+                        comando.Parameters.AddWithValue("@id", idUsuarioSeleccionado);
+                        comando.ExecuteNonQuery();
+
+                        MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarUsuarios();
+                        idUsuarioSeleccionado = -1;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnBuscarT_Click(object sender, EventArgs e)
+        {
+            string nombreBuscar = txtBuscarTarjeta.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombreBuscar))
+            {
+                MessageBox.Show("Por favor, ingresa un nombre para buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool encontrado = false;
+            idTarjetaSeleccionada = -1;
+
+            foreach (DataGridViewRow fila in dgvTarjetas.Rows)
+            {
+                if (fila.Cells["nombre"].Value != null &&
+                    fila.Cells["nombre"].Value.ToString().Equals(nombreBuscar, StringComparison.OrdinalIgnoreCase))
+                {
+                    fila.Selected = true;
+                    fila.DefaultCellStyle.BackColor = Color.LightYellow;
+                    dgvTarjetas.FirstDisplayedScrollingRowIndex = fila.Index;
+
+                    idTarjetaSeleccionada = Convert.ToInt32(fila.Cells["id"].Value);
+                    encontrado = true;
+                }
+                else
+                {
+                    fila.DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+
+            if (encontrado)
+            {
+                MessageBox.Show($"Tarjeta '{nombreBuscar}' encontrada.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Tarjeta no encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnEliminarT_Click(object sender, EventArgs e)
+        {
+            if (idTarjetaSeleccionada == -1)
+            {
+                MessageBox.Show("Por favor busca una tarjeta antes.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirmacion = MessageBox.Show(
+                "¿Seguro que deseas eliminar esta tarjeta?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                {
+                    try
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM tarjetas WHERE id = @id";
+                        MySqlCommand comando = new MySqlCommand(query, conexion);
+                        comando.Parameters.AddWithValue("@id", idTarjetaSeleccionada);
+                        comando.ExecuteNonQuery();
+
+                        MessageBox.Show("Tarjeta eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarTarjetas(); // refresca la tabla
+                        idTarjetaSeleccionada = -1;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar tarjeta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        // ✅ SE AGREGA ESTO ABAJO DEL CONSTRUCTOR
+        
     }
 }

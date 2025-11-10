@@ -29,17 +29,33 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnInicio = new FontAwesome.Sharp.IconButton();
+            this.btnNuevos = new FontAwesome.Sharp.IconButton();
+            this.btnRegistros = new FontAwesome.Sharp.IconButton();
+            this.btnTarjetas = new FontAwesome.Sharp.IconButton();
+            this.btnUsuarios = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnNada = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panelNuevos = new System.Windows.Forms.Panel();
             this.PanelTarjetas = new System.Windows.Forms.Panel();
-            this.gbUN = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtBuscarTarjeta = new System.Windows.Forms.TextBox();
+            this.btnBuscarT = new FontAwesome.Sharp.IconButton();
+            this.btnEliminarT = new FontAwesome.Sharp.IconButton();
+            this.dgvTarjetas = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelInicio = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panelUsuarios = new System.Windows.Forms.Panel();
+            this.btnBuscarU = new FontAwesome.Sharp.IconButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.btnEliminarU = new FontAwesome.Sharp.IconButton();
+            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.panelNuevos = new System.Windows.Forms.Panel();
             this.gbUT = new System.Windows.Forms.GroupBox();
             this.lbluid = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,114 +63,124 @@
             this.btnNTarjeta = new FontAwesome.Sharp.IconButton();
             this.txtNT = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnmostrarNT = new FontAwesome.Sharp.IconButton();
+            this.btnmostarNU = new FontAwesome.Sharp.IconButton();
+            this.gbUN = new System.Windows.Forms.GroupBox();
             this.btnver = new FontAwesome.Sharp.IconButton();
             this.btnAgregar = new FontAwesome.Sharp.IconButton();
             this.txtContraN = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtUserN = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnmostrarNT = new FontAwesome.Sharp.IconButton();
-            this.btnmostarNU = new FontAwesome.Sharp.IconButton();
-            this.panelUsuarios = new System.Windows.Forms.Panel();
-            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.dgvTarjetas = new System.Windows.Forms.DataGridView();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
-            this.panelInicio = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.iconButton8 = new FontAwesome.Sharp.IconButton();
-            this.iconButton7 = new FontAwesome.Sharp.IconButton();
+            this.PanelRegistros = new System.Windows.Forms.Panel();
+            this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panelNuevos.SuspendLayout();
             this.PanelTarjetas.SuspendLayout();
-            this.gbUN.SuspendLayout();
-            this.gbUT.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTarjetas)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panelInicio.SuspendLayout();
             this.panelUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTarjetas)).BeginInit();
-            this.panelInicio.SuspendLayout();
+            this.panelNuevos.SuspendLayout();
+            this.gbUT.SuspendLayout();
+            this.gbUN.SuspendLayout();
+            this.PanelRegistros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel1.Controls.Add(this.iconButton6);
-            this.panel1.Controls.Add(this.iconButton4);
-            this.panel1.Controls.Add(this.iconButton3);
-            this.panel1.Controls.Add(this.iconButton2);
-            this.panel1.Controls.Add(this.iconButton1);
+            this.panel1.Controls.Add(this.btnInicio);
+            this.panel1.Controls.Add(this.btnNuevos);
+            this.panel1.Controls.Add(this.btnRegistros);
+            this.panel1.Controls.Add(this.btnTarjetas);
+            this.panel1.Controls.Add(this.btnUsuarios);
             this.panel1.Location = new System.Drawing.Point(0, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 380);
+            this.panel1.Size = new System.Drawing.Size(174, 390);
             this.panel1.TabIndex = 0;
             // 
-            // iconButton4
+            // btnInicio
             // 
-            this.iconButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.iconButton4.IconColor = System.Drawing.Color.Black;
-            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton4.IconSize = 40;
-            this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(0, 239);
-            this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Size = new System.Drawing.Size(174, 55);
-            this.iconButton4.TabIndex = 3;
-            this.iconButton4.Text = "Nuevo";
-            this.iconButton4.UseVisualStyleBackColor = true;
-            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
+            this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnInicio.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
+            this.btnInicio.IconColor = System.Drawing.Color.Black;
+            this.btnInicio.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInicio.IconSize = 40;
+            this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInicio.Location = new System.Drawing.Point(0, 10);
+            this.btnInicio.Name = "btnInicio";
+            this.btnInicio.Size = new System.Drawing.Size(174, 52);
+            this.btnInicio.TabIndex = 4;
+            this.btnInicio.Text = "Inicio";
+            this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click_1);
             // 
-            // iconButton3
+            // btnNuevos
             // 
-            this.iconButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.AlignJustify;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 40;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 184);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(174, 49);
-            this.iconButton3.TabIndex = 2;
-            this.iconButton3.Text = "Registros";
-            this.iconButton3.UseVisualStyleBackColor = true;
-            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
+            this.btnNuevos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnNuevos.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnNuevos.IconColor = System.Drawing.Color.Black;
+            this.btnNuevos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNuevos.IconSize = 40;
+            this.btnNuevos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevos.Location = new System.Drawing.Point(0, 281);
+            this.btnNuevos.Name = "btnNuevos";
+            this.btnNuevos.Size = new System.Drawing.Size(174, 55);
+            this.btnNuevos.TabIndex = 3;
+            this.btnNuevos.Text = "Nuevo";
+            this.btnNuevos.UseVisualStyleBackColor = true;
+            this.btnNuevos.Click += new System.EventHandler(this.btnNuevos_Click);
             // 
-            // iconButton2
+            // btnRegistros
             // 
-            this.iconButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.IdCard;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 40;
-            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(0, 126);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(174, 52);
-            this.iconButton2.TabIndex = 1;
-            this.iconButton2.Text = "Tarjetas";
-            this.iconButton2.UseVisualStyleBackColor = true;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            this.btnRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnRegistros.IconChar = FontAwesome.Sharp.IconChar.AlignJustify;
+            this.btnRegistros.IconColor = System.Drawing.Color.Black;
+            this.btnRegistros.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistros.IconSize = 40;
+            this.btnRegistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistros.Location = new System.Drawing.Point(0, 222);
+            this.btnRegistros.Name = "btnRegistros";
+            this.btnRegistros.Size = new System.Drawing.Size(174, 49);
+            this.btnRegistros.TabIndex = 2;
+            this.btnRegistros.Text = "Registros";
+            this.btnRegistros.UseVisualStyleBackColor = true;
+            this.btnRegistros.Click += new System.EventHandler(this.btnRegistros_Click);
             // 
-            // iconButton1
+            // btnTarjetas
             // 
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Portrait;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 40;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 68);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(174, 52);
-            this.iconButton1.TabIndex = 0;
-            this.iconButton1.Text = "Usuarios";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnTarjetas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTarjetas.IconChar = FontAwesome.Sharp.IconChar.IdCard;
+            this.btnTarjetas.IconColor = System.Drawing.Color.Black;
+            this.btnTarjetas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTarjetas.IconSize = 40;
+            this.btnTarjetas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTarjetas.Location = new System.Drawing.Point(0, 153);
+            this.btnTarjetas.Name = "btnTarjetas";
+            this.btnTarjetas.Size = new System.Drawing.Size(174, 52);
+            this.btnTarjetas.TabIndex = 1;
+            this.btnTarjetas.Text = "Tarjetas";
+            this.btnTarjetas.UseVisualStyleBackColor = true;
+            this.btnTarjetas.Click += new System.EventHandler(this.btnTarjetas_Click);
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.Portrait;
+            this.btnUsuarios.IconColor = System.Drawing.Color.Black;
+            this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUsuarios.IconSize = 40;
+            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 76);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(174, 52);
+            this.btnUsuarios.TabIndex = 0;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click_1);
             // 
             // panel2
             // 
@@ -190,17 +216,213 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Administrador";
             // 
+            // PanelTarjetas
+            // 
+            this.PanelTarjetas.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.PanelTarjetas.Controls.Add(this.label10);
+            this.PanelTarjetas.Controls.Add(this.txtBuscarTarjeta);
+            this.PanelTarjetas.Controls.Add(this.btnBuscarT);
+            this.PanelTarjetas.Controls.Add(this.btnEliminarT);
+            this.PanelTarjetas.Controls.Add(this.dgvTarjetas);
+            this.PanelTarjetas.Location = new System.Drawing.Point(11, 3);
+            this.PanelTarjetas.Name = "PanelTarjetas";
+            this.PanelTarjetas.Size = new System.Drawing.Size(509, 353);
+            this.PanelTarjetas.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(65, 252);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(100, 21);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Nombre o ID";
+            // 
+            // txtBuscarTarjeta
+            // 
+            this.txtBuscarTarjeta.Location = new System.Drawing.Point(171, 252);
+            this.txtBuscarTarjeta.Name = "txtBuscarTarjeta";
+            this.txtBuscarTarjeta.Size = new System.Drawing.Size(135, 20);
+            this.txtBuscarTarjeta.TabIndex = 9;
+            // 
+            // btnBuscarT
+            // 
+            this.btnBuscarT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBuscarT.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscarT.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarT.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarT.IconSize = 22;
+            this.btnBuscarT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarT.Location = new System.Drawing.Point(249, 296);
+            this.btnBuscarT.Name = "btnBuscarT";
+            this.btnBuscarT.Size = new System.Drawing.Size(100, 35);
+            this.btnBuscarT.TabIndex = 7;
+            this.btnBuscarT.Text = "Buscar";
+            this.btnBuscarT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarT.UseVisualStyleBackColor = true;
+            this.btnBuscarT.Click += new System.EventHandler(this.btnBuscarT_Click);
+            // 
+            // btnEliminarT
+            // 
+            this.btnEliminarT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarT.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminarT.IconColor = System.Drawing.Color.Black;
+            this.btnEliminarT.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminarT.IconSize = 22;
+            this.btnEliminarT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarT.Location = new System.Drawing.Point(364, 296);
+            this.btnEliminarT.Name = "btnEliminarT";
+            this.btnEliminarT.Size = new System.Drawing.Size(96, 35);
+            this.btnEliminarT.TabIndex = 6;
+            this.btnEliminarT.Text = "Eliminar";
+            this.btnEliminarT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminarT.UseVisualStyleBackColor = true;
+            this.btnEliminarT.Click += new System.EventHandler(this.btnEliminarT_Click);
+            // 
+            // dgvTarjetas
+            // 
+            this.dgvTarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTarjetas.Location = new System.Drawing.Point(20, 12);
+            this.dgvTarjetas.Name = "dgvTarjetas";
+            this.dgvTarjetas.Size = new System.Drawing.Size(440, 191);
+            this.dgvTarjetas.TabIndex = 0;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel3.Controls.Add(this.PanelTarjetas);
-            this.panel3.Controls.Add(this.panelNuevos);
-            this.panel3.Controls.Add(this.panelUsuarios);
             this.panel3.Controls.Add(this.panelInicio);
+            this.panel3.Controls.Add(this.panelUsuarios);
+            this.panel3.Controls.Add(this.panelNuevos);
             this.panel3.Location = new System.Drawing.Point(179, 83);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1043, 380);
             this.panel3.TabIndex = 2;
+            // 
+            // panelInicio
+            // 
+            this.panelInicio.Controls.Add(this.label8);
+            this.panelInicio.Controls.Add(this.lblEstado);
+            this.panelInicio.Controls.Add(this.label6);
+            this.panelInicio.Controls.Add(this.PanelTarjetas);
+            this.panelInicio.Location = new System.Drawing.Point(0, 3);
+            this.panelInicio.Name = "panelInicio";
+            this.panelInicio.Size = new System.Drawing.Size(566, 366);
+            this.panelInicio.TabIndex = 8;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(180, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 31);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Actividad";
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.Location = new System.Drawing.Point(146, 89);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(15, 20);
+            this.lblEstado.TabIndex = 3;
+            this.lblEstado.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(64, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Estado: ";
+            // 
+            // panelUsuarios
+            // 
+            this.panelUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panelUsuarios.Controls.Add(this.btnBuscarU);
+            this.panelUsuarios.Controls.Add(this.label9);
+            this.panelUsuarios.Controls.Add(this.lbl1);
+            this.panelUsuarios.Controls.Add(this.txtUser);
+            this.panelUsuarios.Controls.Add(this.btnEliminarU);
+            this.panelUsuarios.Controls.Add(this.dgvUsuarios);
+            this.panelUsuarios.Location = new System.Drawing.Point(15, 17);
+            this.panelUsuarios.Name = "panelUsuarios";
+            this.panelUsuarios.Size = new System.Drawing.Size(475, 338);
+            this.panelUsuarios.TabIndex = 0;
+            // 
+            // btnBuscarU
+            // 
+            this.btnBuscarU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBuscarU.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscarU.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarU.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarU.IconSize = 22;
+            this.btnBuscarU.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarU.Location = new System.Drawing.Point(203, 278);
+            this.btnBuscarU.Name = "btnBuscarU";
+            this.btnBuscarU.Size = new System.Drawing.Size(105, 29);
+            this.btnBuscarU.TabIndex = 9;
+            this.btnBuscarU.Text = "Buscar";
+            this.btnBuscarU.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarU.UseVisualStyleBackColor = true;
+            this.btnBuscarU.Click += new System.EventHandler(this.btnBuscarU_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(30, 242);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 21);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Nombre o ID";
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(176, 206);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(114, 21);
+            this.lbl1.TabIndex = 7;
+            this.lbl1.Text = "Buscar Usuario";
+            // 
+            // txtUser
+            // 
+            this.txtUser.Location = new System.Drawing.Point(136, 242);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(135, 20);
+            this.txtUser.TabIndex = 6;
+            // 
+            // btnEliminarU
+            // 
+            this.btnEliminarU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnEliminarU.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnEliminarU.IconColor = System.Drawing.Color.Black;
+            this.btnEliminarU.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminarU.IconSize = 22;
+            this.btnEliminarU.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminarU.Location = new System.Drawing.Point(325, 278);
+            this.btnEliminarU.Name = "btnEliminarU";
+            this.btnEliminarU.Size = new System.Drawing.Size(108, 29);
+            this.btnEliminarU.TabIndex = 5;
+            this.btnEliminarU.Text = "Eliminar";
+            this.btnEliminarU.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminarU.UseVisualStyleBackColor = true;
+            this.btnEliminarU.Click += new System.EventHandler(this.btnEliminarU_Click);
+            // 
+            // dgvUsuarios
+            // 
+            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsuarios.Location = new System.Drawing.Point(14, 12);
+            this.dgvUsuarios.Name = "dgvUsuarios";
+            this.dgvUsuarios.Size = new System.Drawing.Size(446, 176);
+            this.dgvUsuarios.TabIndex = 0;
             // 
             // panelNuevos
             // 
@@ -212,32 +434,6 @@
             this.panelNuevos.Name = "panelNuevos";
             this.panelNuevos.Size = new System.Drawing.Size(952, 349);
             this.panelNuevos.TabIndex = 1;
-            // 
-            // PanelTarjetas
-            // 
-            this.PanelTarjetas.Controls.Add(this.iconButton7);
-            this.PanelTarjetas.Controls.Add(this.dgvTarjetas);
-            this.PanelTarjetas.Location = new System.Drawing.Point(15, 17);
-            this.PanelTarjetas.Name = "PanelTarjetas";
-            this.PanelTarjetas.Size = new System.Drawing.Size(491, 349);
-            this.PanelTarjetas.TabIndex = 7;
-            // 
-            // gbUN
-            // 
-            this.gbUN.BackColor = System.Drawing.Color.Transparent;
-            this.gbUN.Controls.Add(this.btnver);
-            this.gbUN.Controls.Add(this.btnAgregar);
-            this.gbUN.Controls.Add(this.txtContraN);
-            this.gbUN.Controls.Add(this.label3);
-            this.gbUN.Controls.Add(this.txtUserN);
-            this.gbUN.Controls.Add(this.label2);
-            this.gbUN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbUN.Location = new System.Drawing.Point(14, 77);
-            this.gbUN.Name = "gbUN";
-            this.gbUN.Size = new System.Drawing.Size(446, 236);
-            this.gbUN.TabIndex = 6;
-            this.gbUN.TabStop = false;
-            this.gbUN.Text = "Nuevo Usuario";
             // 
             // gbUT
             // 
@@ -327,6 +523,55 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Nombre: ";
             // 
+            // btnmostrarNT
+            // 
+            this.btnmostrarNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnmostrarNT.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnmostrarNT.IconColor = System.Drawing.Color.Black;
+            this.btnmostrarNT.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnmostrarNT.IconSize = 25;
+            this.btnmostrarNT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnmostrarNT.Location = new System.Drawing.Point(497, 12);
+            this.btnmostrarNT.Name = "btnmostrarNT";
+            this.btnmostrarNT.Size = new System.Drawing.Size(138, 42);
+            this.btnmostrarNT.TabIndex = 5;
+            this.btnmostrarNT.Text = "Tarjetas";
+            this.btnmostrarNT.UseVisualStyleBackColor = true;
+            this.btnmostrarNT.Click += new System.EventHandler(this.btnmostrarNT_Click);
+            // 
+            // btnmostarNU
+            // 
+            this.btnmostarNU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnmostarNU.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnmostarNU.IconColor = System.Drawing.Color.Black;
+            this.btnmostarNU.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnmostarNU.IconSize = 25;
+            this.btnmostarNU.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnmostarNU.Location = new System.Drawing.Point(92, 12);
+            this.btnmostarNU.Name = "btnmostarNU";
+            this.btnmostarNU.Size = new System.Drawing.Size(138, 42);
+            this.btnmostarNU.TabIndex = 4;
+            this.btnmostarNU.Text = "Usuarios";
+            this.btnmostarNU.UseVisualStyleBackColor = true;
+            this.btnmostarNU.Click += new System.EventHandler(this.btnmostarNU_Click);
+            // 
+            // gbUN
+            // 
+            this.gbUN.BackColor = System.Drawing.Color.Transparent;
+            this.gbUN.Controls.Add(this.btnver);
+            this.gbUN.Controls.Add(this.btnAgregar);
+            this.gbUN.Controls.Add(this.txtContraN);
+            this.gbUN.Controls.Add(this.label3);
+            this.gbUN.Controls.Add(this.txtUserN);
+            this.gbUN.Controls.Add(this.label2);
+            this.gbUN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbUN.Location = new System.Drawing.Point(14, 77);
+            this.gbUN.Name = "gbUN";
+            this.gbUN.Size = new System.Drawing.Size(446, 236);
+            this.gbUN.TabIndex = 6;
+            this.gbUN.TabStop = false;
+            this.gbUN.Text = "Nuevo Usuario";
+            // 
             // btnver
             // 
             this.btnver.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
@@ -391,169 +636,28 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nombre: ";
             // 
-            // btnmostrarNT
+            // PanelRegistros
             // 
-            this.btnmostrarNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnmostrarNT.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.btnmostrarNT.IconColor = System.Drawing.Color.Black;
-            this.btnmostrarNT.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnmostrarNT.IconSize = 25;
-            this.btnmostrarNT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnmostrarNT.Location = new System.Drawing.Point(497, 12);
-            this.btnmostrarNT.Name = "btnmostrarNT";
-            this.btnmostrarNT.Size = new System.Drawing.Size(138, 42);
-            this.btnmostrarNT.TabIndex = 5;
-            this.btnmostrarNT.Text = "Tarjetas";
-            this.btnmostrarNT.UseVisualStyleBackColor = true;
-            this.btnmostrarNT.Click += new System.EventHandler(this.btnmostrarNT_Click);
+            this.PanelRegistros.Controls.Add(this.dgvRegistros);
+            this.PanelRegistros.Location = new System.Drawing.Point(175, 74);
+            this.PanelRegistros.Name = "PanelRegistros";
+            this.PanelRegistros.Size = new System.Drawing.Size(578, 399);
+            this.PanelRegistros.TabIndex = 8;
             // 
-            // btnmostarNU
+            // dgvRegistros
             // 
-            this.btnmostarNU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnmostarNU.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.btnmostarNU.IconColor = System.Drawing.Color.Black;
-            this.btnmostarNU.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnmostarNU.IconSize = 25;
-            this.btnmostarNU.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnmostarNU.Location = new System.Drawing.Point(92, 12);
-            this.btnmostarNU.Name = "btnmostarNU";
-            this.btnmostarNU.Size = new System.Drawing.Size(138, 42);
-            this.btnmostarNU.TabIndex = 4;
-            this.btnmostarNU.Text = "Usuarios";
-            this.btnmostarNU.UseVisualStyleBackColor = true;
-            this.btnmostarNU.Click += new System.EventHandler(this.btnmostarNU_Click);
-            // 
-            // panelUsuarios
-            // 
-            this.panelUsuarios.Controls.Add(this.iconButton8);
-            this.panelUsuarios.Controls.Add(this.dgvUsuarios);
-            this.panelUsuarios.Location = new System.Drawing.Point(15, 17);
-            this.panelUsuarios.Name = "panelUsuarios";
-            this.panelUsuarios.Size = new System.Drawing.Size(475, 338);
-            this.panelUsuarios.TabIndex = 0;
-            // 
-            // dgvUsuarios
-            // 
-            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Location = new System.Drawing.Point(14, 12);
-            this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.Size = new System.Drawing.Size(446, 176);
-            this.dgvUsuarios.TabIndex = 0;
-            // 
-            // dgvTarjetas
-            // 
-            this.dgvTarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTarjetas.Location = new System.Drawing.Point(20, 12);
-            this.dgvTarjetas.Name = "dgvTarjetas";
-            this.dgvTarjetas.Size = new System.Drawing.Size(440, 224);
-            this.dgvTarjetas.TabIndex = 0;
-            // 
-            // iconButton6
-            // 
-            this.iconButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.HomeUser;
-            this.iconButton6.IconColor = System.Drawing.Color.Black;
-            this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton6.IconSize = 40;
-            this.iconButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton6.Location = new System.Drawing.Point(0, 10);
-            this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Size = new System.Drawing.Size(174, 52);
-            this.iconButton6.TabIndex = 4;
-            this.iconButton6.Text = "Inicio";
-            this.iconButton6.UseVisualStyleBackColor = true;
-            this.iconButton6.Click += new System.EventHandler(this.iconButton6_Click);
-            // 
-            // panelInicio
-            // 
-            this.panelInicio.Controls.Add(this.lblEstado);
-            this.panelInicio.Controls.Add(this.label8);
-            this.panelInicio.Controls.Add(this.label7);
-            this.panelInicio.Controls.Add(this.label6);
-            this.panelInicio.Location = new System.Drawing.Point(0, 0);
-            this.panelInicio.Name = "panelInicio";
-            this.panelInicio.Size = new System.Drawing.Size(566, 366);
-            this.panelInicio.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(94, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Estado: ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(189, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(194, 31);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Administrador";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(178, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(134, 31);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Actividad";
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(182, 89);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(15, 20);
-            this.lblEstado.TabIndex = 3;
-            this.lblEstado.Text = "-";
-            // 
-            // iconButton8
-            // 
-            this.iconButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.iconButton8.IconColor = System.Drawing.Color.Black;
-            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton8.IconSize = 25;
-            this.iconButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton8.Location = new System.Drawing.Point(331, 251);
-            this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Size = new System.Drawing.Size(123, 35);
-            this.iconButton8.TabIndex = 5;
-            this.iconButton8.Text = "Eliminar";
-            this.iconButton8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton8.UseVisualStyleBackColor = true;
-            // 
-            // iconButton7
-            // 
-            this.iconButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.iconButton7.IconColor = System.Drawing.Color.Black;
-            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton7.IconSize = 25;
-            this.iconButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton7.Location = new System.Drawing.Point(337, 278);
-            this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Size = new System.Drawing.Size(123, 35);
-            this.iconButton7.TabIndex = 6;
-            this.iconButton7.Text = "Eliminar";
-            this.iconButton7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton7.UseVisualStyleBackColor = true;
+            this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegistros.Location = new System.Drawing.Point(29, 28);
+            this.dgvRegistros.Name = "dgvRegistros";
+            this.dgvRegistros.Size = new System.Drawing.Size(446, 205);
+            this.dgvRegistros.TabIndex = 0;
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 464);
+            this.ClientSize = new System.Drawing.Size(1156, 479);
+            this.Controls.Add(this.PanelRegistros);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -562,18 +666,22 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panelNuevos.ResumeLayout(false);
             this.PanelTarjetas.ResumeLayout(false);
-            this.gbUN.ResumeLayout(false);
-            this.gbUN.PerformLayout();
-            this.gbUT.ResumeLayout(false);
-            this.gbUT.PerformLayout();
-            this.panelUsuarios.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            this.PanelTarjetas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTarjetas)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panelInicio.ResumeLayout(false);
             this.panelInicio.PerformLayout();
+            this.panelUsuarios.ResumeLayout(false);
+            this.panelUsuarios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            this.panelNuevos.ResumeLayout(false);
+            this.gbUT.ResumeLayout(false);
+            this.gbUT.PerformLayout();
+            this.gbUN.ResumeLayout(false);
+            this.gbUN.PerformLayout();
+            this.PanelRegistros.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -583,14 +691,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnRegistros;
+        private FontAwesome.Sharp.IconButton btnTarjetas;
+        private FontAwesome.Sharp.IconButton btnUsuarios;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton btnNada;
         private System.Windows.Forms.Panel panelUsuarios;
         private System.Windows.Forms.DataGridView dgvUsuarios;
-        private FontAwesome.Sharp.IconButton iconButton4;
+        private FontAwesome.Sharp.IconButton btnNuevos;
         private System.Windows.Forms.Panel panelNuevos;
         private System.Windows.Forms.GroupBox gbUN;
         private FontAwesome.Sharp.IconButton btnmostrarNT;
@@ -610,13 +718,21 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel PanelTarjetas;
         private System.Windows.Forms.DataGridView dgvTarjetas;
-        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton btnInicio;
         private System.Windows.Forms.Panel panelInicio;
         private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private FontAwesome.Sharp.IconButton iconButton8;
-        private FontAwesome.Sharp.IconButton iconButton7;
+        private FontAwesome.Sharp.IconButton btnEliminarU;
+        private FontAwesome.Sharp.IconButton btnEliminarT;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.TextBox txtUser;
+        private FontAwesome.Sharp.IconButton btnBuscarU;
+        private FontAwesome.Sharp.IconButton btnBuscarT;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtBuscarTarjeta;
+        private System.Windows.Forms.Panel PanelRegistros;
+        private System.Windows.Forms.DataGridView dgvRegistros;
+        private System.Windows.Forms.Label label8;
     }
 }
