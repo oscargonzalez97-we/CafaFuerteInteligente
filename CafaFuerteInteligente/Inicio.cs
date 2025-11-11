@@ -521,6 +521,7 @@ namespace CafaFuerteInteligente
             panelUsuarios.Visible = false;
             PanelTarjetas.Visible = false;
             panelInicio.Visible = false;
+            PanelRegistros.Visible=false;
         }
 
 
@@ -677,7 +678,7 @@ namespace CafaFuerteInteligente
                         comando.ExecuteNonQuery();
 
                         MessageBox.Show("Tarjeta eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarTarjetas(); // refresca la tabla
+                        CargarTarjetas(); 
                         idTarjetaSeleccionada = -1;
                     }
                     catch (Exception ex)
@@ -688,7 +689,6 @@ namespace CafaFuerteInteligente
             }
         }
 
-        // ✅ SE AGREGA ESTO ABAJO DEL CONSTRUCTOR
         
     }
 }
